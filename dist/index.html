@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Rust Web Assembly Example</title>
+    <meta charset="utf-8" />
+  </head>
+  <body>
+    <h1>Rust Web Assembly Example</h1>
+
+    <section>
+      <h2>Server</h2>
+      <form id="server-form" action="#">
+        <input id="server-left" type="number" value="1" required>
+        &plus;
+        <input id="server-right" type="number" value="1" required>
+        <input id="server-calc" type="submit" value="=">
+        <input id="server-res" type="number" placeholder="Result" disabled>
+      </form>
+    </section>
+
+    <section>
+      <h2>Web Assembly</h2>
+      <form id="client-form" action="#">
+        <input id="client-left" type="number" value="1" required>
+        &plus;
+        <input id="client-right" type="number" value="1" required>
+        <input id="client-calc" type="submit" value="=">
+        <input id="client-res" type="number" placeholder="Result" disabled>
+      </form>
+    </section>
+
+    <script src="js/wasm.js"></script>
+    <script src="js/plain.js"></script>
+  </body>
+</html>

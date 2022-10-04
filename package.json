@@ -1,0 +1,50 @@
+{
+  "name": "circleci-dynamic-config-example",
+  "version": "1.0.0",
+  "description": "An example app for CircleCI's dynamic config demo",
+  "scripts": {
+    "build": "rimraf dist/js && rollup --config && cargo build",
+    "format": "eslint --fix . && prettier --write . && cargo fmt",
+    "start": "npm run build && cargo run",
+    "test": "cargo test",
+    "test:client": "cargo test --package client",
+    "test:server": "cargo test --package server",
+    "test:shared": "cargo test --package shared",
+    "prepare": "husky install"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yujiosaka/circleci-dynamic-config-example.git"
+  },
+  "keywords": [
+    "example",
+    "circleci",
+    "dynamic",
+    "config",
+    "rust"
+  ],
+  "author": "Yuji Isobe",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yujiosaka/circleci-dynamic-config-example/issues"
+  },
+  "homepage": "https://github.com/yujiosaka/circleci-dynamic-config-example#readme",
+  "devDependencies": {
+    "@commitlint/cli": "17.1.2",
+    "@commitlint/config-conventional": "17.1.0",
+    "@wasm-tool/rollup-plugin-rust": "2.3.1",
+    "eslint": "8.24.0",
+    "eslint-config-prettier": "8.5.0",
+    "husky": "8.0.1",
+    "lint-staged": "13.0.3",
+    "prettier": "2.7.1",
+    "rimraf": "3.0.2",
+    "rollup": "2.79.1"
+  },
+  "lint-staged": {
+    "**/*.js": [
+      "prettier --write --ignore-unknown",
+      "eslint --fix ."
+    ]
+  }
+}

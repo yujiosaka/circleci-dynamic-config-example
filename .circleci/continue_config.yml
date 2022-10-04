@@ -1,0 +1,51 @@
+version: 2.1
+
+orbs:
+  rust: circleci/rust@1.6.0
+
+parameters:
+  run-build-client-job:
+    type: boolean
+    default: false
+  run-build-server-job:
+    type: boolean
+    default: false
+  run-build-shared-job:
+    type: boolean
+    default: false
+
+workflows:
+  client:
+    when:
+      or:
+        [
+          << pipeline.parameters.run-build-client-job >>,
+          << pipeline.parameters.run-build-shared-job >>,
+        ]
+    jobs:
+      - rust/lint-test-build:
+          with_cache: false
+          release: true
+          version: 1.64.0
+          working_directory: client
+  server:
+    when:
+      or:
+        [
+          << pipeline.parameters.run-build-server-job >>,
+          << pipeline.parameters.run-build-shared-job >>,
+        ]
+    jobs:
+      - rust/lint-test-build:
+          with_cache: false
+          release: true
+          version: 1.64.0
+          working_directory: server
+  shared:
+    when: << pipeline.parameters.run-build-shared-job >>
+    jobs:
+      - rust/lint-test-build:
+          with_cache: false
+          release: true
+          version: 1.64.0
+          working_directory: shared

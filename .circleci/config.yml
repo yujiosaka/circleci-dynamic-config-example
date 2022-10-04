@@ -1,0 +1,18 @@
+version: 2.1
+
+setup: true
+
+orbs:
+  path-filtering: circleci/path-filtering@0.1.1
+
+workflows:
+  always-run:
+    jobs:
+      - path-filtering/filter:
+          name: check-updated-files
+          mapping: |
+            client/.* run-build-client-job true
+            server/.* run-build-server-job true
+            shared/.* run-build-shared-job true
+          base-revision: main
+          config-path: .circleci/continue_config.yml
